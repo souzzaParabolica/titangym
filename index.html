@@ -3,11 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="Assets/Img/logo.png"
-    />
+    <link rel="icon" type="image/png" href="Assets/Img/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -67,54 +63,130 @@
   </head>
   <body class="p-2 bg-white/60 relative overflow-x-hidden font-[inter]">
     <header
-      class="absolute w-full top-0 flex justify-between items-center px-12 py-8"
+      class="absolute w-full top-0 flex justify-between items-center px-4 md:px-12 py-4 md:py-8"
     >
-      <h1 class="font-[900] text-7xl text-white/90 -tracking-[3px]">.TITAN</h1>
+      <h1
+        class="font-[900] text-4xl xs:text-5xl sm:text-6xl md:text-7xl text-white/90 -tracking-[1px] md:-tracking-[3px]"
+      >
+        .TITAN
+      </h1>
+      <!-- Mobile Hamburger Menu Button -->
+      <button
+        id="menu-toggle"
+        class="md:hidden fixed top-4 left-4 z-50 bg-black/30 p-2 md:p-3 rounded-full flex items-center justify-center focus:outline-none"
+        aria-label="Abrir menu"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 md:h-7 md:w-7 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 8h16M4 16h16"
+          />
+        </svg>
+      </button>
+
+      <!-- Nav -->
       <nav>
-        <ul class="flex justify-center items-center gap-12">
+        <ul
+          id="navbar-menu"
+          class="flex justify-center items-center md:flex md:static md:flex-row md:bg-transparent md:h-auto md:p-0 bg-[#111] fixed top-0 left-0 w-11/12 sm:w-3/4 max-w-xs h-full flex-col p-8 xs:p-10 sm:p-12 gap-8 sm:gap-10 md:gap-12 z-40 transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0"
+        >
           <li
-            class="text-white/70 hover:text-white/90 hover:underline duration-300 ease"
+            class="text-white/70 hover:text-white/90 hover:underline duration-300 ease w-full md:w-auto text-xl md:text-base text-left md:text-center"
           >
             <a href="">Services</a>
           </li>
           <li
-            class="text-white/70 hover:text-white/90 hover:underline duration-300 ease"
+            class="text-white/70 hover:text-white/90 hover:underline duration-300 ease w-full md:w-auto text-xl md:text-base text-left md:text-center"
           >
             <a href="">Schedule</a>
           </li>
           <li
-            class="text-white/70 hover:text-white/90 hover:underline duration-300 ease"
+            class="text-white/70 hover:text-white/90 hover:underline duration-300 ease w-full md:w-auto text-xl md:text-base text-left md:text-center"
           >
             <a href="">Gallery</a>
           </li>
           <li
-            class="text-white/70 hover:text-white/90 hover:underline duration-300 ease"
+            class="text-white/70 hover:text-white/90 hover:underline duration-300 ease w-full md:w-auto text-xl md:text-base text-left md:text-center"
           >
             <a href="">Planks</a>
           </li>
           <li
-            class="text-white/70 hover:text-white/90 hover:underline duration-300 ease"
+            class="text-white/70 hover:text-white/90 hover:underline duration-300 ease w-full md:w-auto text-xl md:text-base text-left md:text-center"
           >
             <a href="">Contacts</a>
           </li>
+          <div class="flex flex-col gap-4 w-full mt-6 md:hidden">
+            <button
+              class="text-white/80 rounded-full py-2 px-4 font-bold border border-white/60 bg-black/20 hover:bg-black/30 transition"
+            >
+              Log in
+            </button>
+            <button
+              class="bg-white/80 hover:bg-white/90 duration-300 ease rounded-full py-2 px-4 font-bold text-black"
+            >
+              Try for free
+            </button>
+          </div>
         </ul>
       </nav>
-      <div class="buttons flex justify-center items-center">
+      <script>
+        // Menu toggle logic
+        const menuBtn = document.getElementById("menu-toggle");
+        const navbarMenu = document.getElementById("navbar-menu");
+        function closeMenu() {
+          navbarMenu.classList.add("-translate-x-full");
+        }
+        function openMenu() {
+          navbarMenu.classList.remove("-translate-x-full");
+        }
+        menuBtn.addEventListener("click", function () {
+          if (navbarMenu.classList.contains("-translate-x-full")) {
+            openMenu();
+          } else {
+            closeMenu();
+          }
+        });
+        // Close menu on link click (mobile only)
+        document.querySelectorAll("#navbar-menu a").forEach((link) => {
+          link.addEventListener("click", () => {
+            if (window.innerWidth < 768) closeMenu();
+          });
+        });
+        // Ensure menu closes on screen resize to desktop
+        window.addEventListener("resize", () => {
+          if (window.innerWidth >= 768) {
+            navbarMenu.classList.remove("-translate-x-full");
+          } else {
+            closeMenu();
+          }
+        });
+        // Start closed on page load if mobile
+        if (window.innerWidth < 768) closeMenu();
+      </script>
+      <div class="buttons hidden md:flex justify-center items-center gap-3">
         <button class="text-white/80 rounded-full py-2 px-4 font-bold">
           Log in
         </button>
         <button
-          class="text-[trasnparent] bg-white/80 hover:bg-white/90 duration-300 ease rounded-full py-2 px-4 font-bold"
+          class="bg-white/80 hover:bg-white/90 duration-300 ease rounded-full py-2 px-4 font-bold text-black"
         >
           Try for free
         </button>
       </div>
     </header>
     <section
-      class="hero flex flex-col justify-end items-start w-full h-[100dvh] rounded-xl px-12 pb-12"
+      class="hero flex flex-col justify-end items-center xl:justify-end xl:items-start w-full h-[100dvh] rounded-xl px-12 pb-12"
     >
       <!--  <div class="absolute top-0 left-0 w-full h-full blurEffect"></div> -->
-      <div class="flex flex-col justify-center items-start">
+      <div class="hidden md:flex flex-col justify-center items-start">
         <h2 class="text-8xl font-bold text-white/80">
           Be healthier. <br />
           Be stronger. <br />
@@ -137,154 +209,290 @@
           </button>
         </div>
       </div>
-      <div class="flex justify-evenly items-center w-full gap-12">
-        <div
-          class="flex flex-col justify-between items-start bg-[#dfdfdf] rounded-3xl p-4 relative flex-1 min-h-[160px]"
-        >
-          <div class="relative flex justify-center items-center gap-4">
-            <img
-              class="absolute left-0 w-12 h-12 rounded-full p-1 bg-[#dfdfdf]"
-              src="Assets/Img/img1.jpg"
-              alt=""
-            />
-            <img
-              class="absolute left-5 w-12 h-12 rounded-full p-1 bg-[#dfdfdf]"
-              src="Assets/Img/img2.jpg"
-              alt=""
-            />
-            <img
-              class="absolute left-10 w-12 h-12 rounded-full p-1 bg-[#dfdfdf]"
-              src="Assets/Img/img3.jpg"
-              alt=""
-            />
-            <div class="ml-[120px] flex flex-col justify-center items-start">
-              <p class="text-3xl font-semibold text-black/80">10,000+</p>
-              <p class="text-md text-black/60 font-normal">satisfied clients</p>
-            </div>
-          </div>
-          <p class="text-md text-black/60 font-normal">
-            They arrive different goals, yet they all find support and
-            motivation they need. Their success is the ultimate validation of
-            our method.
-          </p>
-        </div>
-        <!--  DIVISÃO DE CARDS DA HERO<!--  -->
 
-        <div
-          class="cardBlur flex flex-col justify-between items-start bg-white/5 rounded-3xl p-4 relative flex-1 min-h-[160px]"
+      <!-- HERO MOBILE!! -->
+
+      <div class="md:hidden flex flex-col gap-2 justify-center items-center">
+        <h2 class="font-[900] text-8xl text-white/90 -tracking-[3px]">
+          .TITAN
+        </h2>
+        <button
+          class="bg-[#c3ff00] text-[trasnparent] rounded-full px-8 py-4 font-bold flex justify-between items-center gap-4 text-2xl"
         >
-          <div class="flex justify-between w-full">
-            <i
-              data-lucide="arrow-left"
-              class="text-white/80 p-2 bg-white/10 w-9 h-9 rounded-full"
-            ></i>
-            <i
-              data-lucide="arrow-right"
-              class="text-white/80 p-2 bg-white/10 w-9 h-9 rounded-full"
-            ></i>
-          </div>
-          <p
-            class="absolute left-1/2 -translate-x-1/2 top-5 text-lg text-center text-white/90"
-          >
-            Your muscles grow while you sleep. Make 7-9 hours you secret weapon
-            for maximum progress.
-          </p>
-          <div class="flex justify-between w-full">
-            <p class="text-lg text-white/80">Moscow, Russia</p>
-            <p class="text-lg text-white/60">Nov.20</p>
-          </div>
-        </div>
-        <!--  DIVISÃO DE CARDS DA HERO<!--  -->
-        <div
-          class="flex flex-col justify-end items-start bg-[#c3ff00] rounded-3xl p-4 relative flex-1 min-h-[160px]"
-        >
+          Try for free
           <i
             data-lucide="arrow-up-right"
-            class="absolute right-4 top-4 bg-black/90 text-[#c3ff00] rounded-full p-2 w-8 h-8"
+            class="bg-black/90 text-[#c3ff00] rounded-full p-2 w-8 h-8"
           ></i>
-          <p class="text-black/80 text-3xl font-bold">Get 14 days for free</p>
-          <p class="text-black/60 text-md">
-            Just give us a call or message us <br />
-            in the chat
-          </p>
+        </button>
+      </div>
+      <div
+        class="flex justify-evenly items-center w-full gap-12 max-md:gap-0 max-md:overflow-hidden max-md:relative"
+        id="hero-cards-container"
+      >
+        <!-- Desktop Layout: shows all cards side by side on md+ screens -->
+        <div class="flex w-full gap-12 max-md:hidden">
+          <div
+            class="flex flex-col justify-between items-start bg-[#dfdfdf] rounded-3xl p-4 relative flex-1 min-h-[160px]"
+          >
+            <div class="relative flex justify-center items-center gap-4">
+              <img
+                class="absolute left-0 w-12 h-12 rounded-full p-1 bg-[#dfdfdf]"
+                src="Assets/Img/img1.jpg"
+                alt=""
+              />
+              <img
+                class="absolute left-5 w-12 h-12 rounded-full p-1 bg-[#dfdfdf]"
+                src="Assets/Img/img2.jpg"
+                alt=""
+              />
+              <img
+                class="absolute left-10 w-12 h-12 rounded-full p-1 bg-[#dfdfdf]"
+                src="Assets/Img/img3.jpg"
+                alt=""
+              />
+              <div class="ml-[120px] flex flex-col justify-center items-start">
+                <p class="text-3xl font-semibold text-black/80">10,000+</p>
+                <p class="text-md text-black/60 font-normal">
+                  satisfied clients
+                </p>
+              </div>
+            </div>
+            <p class="text-md text-black/60 font-normal">
+              They arrive different goals, yet they all find support and
+              motivation they need. Their success is the ultimate validation of
+              our method.
+            </p>
+          </div>
+          <div
+            class="cardBlur flex flex-col justify-between items-start bg-white/5 rounded-3xl p-4 relative flex-1 min-h-[160px]"
+          >
+            <div class="flex justify-between w-full">
+              <i
+                data-lucide="arrow-left"
+                class="text-white/80 p-2 bg-white/10 w-9 h-9 rounded-full"
+              ></i>
+              <i
+                data-lucide="arrow-right"
+                class="text-white/80 p-2 bg-white/10 w-9 h-9 rounded-full"
+              ></i>
+            </div>
+            <p
+              class="absolute left-1/2 -translate-x-1/2 top-5 text-lg text-center text-white/90"
+            >
+              Your muscles grow while you sleep. Make 7-9 hours you secret
+              weapon for maximum progress.
+            </p>
+            <div class="flex justify-between w-full">
+              <p class="text-lg text-white/80">Moscow, Russia</p>
+              <p class="text-lg text-white/60">Nov.20</p>
+            </div>
+          </div>
+          <div
+            class="flex flex-col justify-end items-start bg-[#c3ff00] rounded-3xl p-4 relative flex-1 min-h-[160px]"
+          >
+            <i
+              data-lucide="arrow-up-right"
+              class="absolute right-4 top-4 bg-black/90 text-[#c3ff00] rounded-full p-2 w-8 h-8"
+            ></i>
+            <p class="text-black/80 text-3xl font-bold">Get 14 days for free</p>
+            <p class="text-black/60 text-md">
+              Just give us a call or message us <br />
+              in the chat
+            </p>
+          </div>
+        </div>
+        <!-- Mobile/Small screen Carousel -->
+        <div class="md:hidden w-full relative flex flex-col items-center mt-8">
+          <div class="relative w-full min-h-[210px] mt-2 mb-8">
+            <div
+              class="hero-carousel-slide transition-opacity duration-500 ease-in-out absolute left-0 top-0 w-full"
+              style="opacity: 1; z-index: 2"
+            >
+              <div
+                class="flex flex-col justify-between items-start bg-[#dfdfdf] rounded-3xl p-4 min-h-[160px] relative"
+              >
+                <div
+                  class="relative flex justify-center items-center gap-4 mb-4"
+                >
+                  <img
+                    class="absolute left-0 w-12 h-12 rounded-full p-1 bg-[#dfdfdf]"
+                    src="Assets/Img/img1.jpg"
+                    alt=""
+                  />
+                  <img
+                    class="absolute left-5 w-12 h-12 rounded-full p-1 bg-[#dfdfdf]"
+                    src="Assets/Img/img2.jpg"
+                    alt=""
+                  />
+                  <img
+                    class="absolute left-10 w-12 h-12 rounded-full p-1 bg-[#dfdfdf]"
+                    src="Assets/Img/img3.jpg"
+                    alt=""
+                  />
+                  <div
+                    class="ml-[120px] flex flex-col justify-center items-start"
+                  >
+                    <p class="text-3xl font-semibold text-black/80">10,000+</p>
+                    <p class="text-md text-black/60 font-normal">
+                      satisfied clients
+                    </p>
+                  </div>
+                </div>
+                <p class="text-md text-black/60 font-normal">
+                  They arrive different goals, yet they all find support and
+                  motivation they need. Their success is the ultimate validation
+                  of our method.
+                </p>
+              </div>
+            </div>
+            <div
+              class="hero-carousel-slide transition-opacity duration-500 ease-in-out absolute left-0 top-0 w-full"
+              style="opacity: 0; z-index: 1"
+            >
+              <div
+                class="cardBlur flex flex-col justify-between items-start bg-white/5 rounded-3xl p-4 min-h-[160px] relative"
+              >
+                <div class="flex justify-between w-full mb-4">
+                  <i
+                    data-lucide="arrow-left"
+                    class="text-white/80 p-2 bg-white/10 w-9 h-9 rounded-full"
+                  ></i>
+                  <i
+                    data-lucide="arrow-right"
+                    class="text-white/80 p-2 bg-white/10 w-9 h-9 rounded-full"
+                  ></i>
+                </div>
+                <p class="text-lg text-center text-white/90 mb-8">
+                  Your muscles grow while you sleep. Make 7-9 hours you secret
+                  weapon for maximum progress.
+                </p>
+                <div class="flex justify-between w-full">
+                  <p class="text-lg text-white/80">Moscow, Russia</p>
+                  <p class="text-lg text-white/60">Nov.20</p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="hero-carousel-slide transition-opacity duration-500 ease-in-out absolute left-0 top-0 w-full"
+              style="opacity: 0; z-index: 1"
+            >
+              <div
+                class="flex flex-col justify-end items-start bg-[#c3ff00] rounded-3xl p-4 min-h-[160px] relative"
+              >
+                <i
+                  data-lucide="arrow-up-right"
+                  class="absolute right-4 top-4 bg-black/90 text-[#c3ff00] rounded-full p-2 w-8 h-8"
+                ></i>
+                <p class="text-black/80 text-3xl font-bold">
+                  Get 14 days for free
+                </p>
+                <p class="text-black/60 text-md">
+                  Just give us a call or message us <br />
+                  in the chat
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Carousel Dots navigation, only one (bolinhas) per user request -->
+          <div class="flex flex-row gap-2 mt-6 mb-2">
+            <button
+              class="carousel-dot w-3 h-3 bg-[#c3ff00] rounded-full opacity-80"
+              onclick="goToHeroCarouselSlide(0)"
+              aria-label="Selecionar slide 1"
+            ></button>
+            <button
+              class="carousel-dot w-3 h-3 bg-[#c3ff00] rounded-full opacity-30"
+              onclick="goToHeroCarouselSlide(1)"
+              aria-label="Selecionar slide 2"
+            ></button>
+            <button
+              class="carousel-dot w-3 h-3 bg-[#c3ff00] rounded-full opacity-30"
+              onclick="goToHeroCarouselSlide(2)"
+              aria-label="Selecionar slide 3"
+            ></button>
+          </div>
         </div>
       </div>
     </section>
     <section
-      class="flex justify-between items-center gap-[100px] w-full px-12 my-12"
+      class="flex flex-col xl:flex-row justify-center xl:justify-between items-start xl:items-center gap-8 md:gap-12 xl:gap-[100px] w-full px-4 md:px-10 xl:px-12 my-8 md:my-12"
     >
-      <div class="esq flex flex-col justify-center items-start">
+      <!-- ESQUERDA -->
+      <div class="esq flex flex-col justify-center items-start w-full xl:w-auto">
         <button
-          class="border-2 border-black/80 rounded-full px-6 py-2 text-black/80 text-xl font-bold"
+          class="border-2 border-black/80 rounded-full px-4 md:px-6 py-2 text-black/80 text-lg md:text-xl font-bold"
         >
           Sport Center
         </button>
-        <p class="text-black/80 text-4xl font-bold mt-24 mb-12">
+        <p class="text-black/80 text-2xl md:text-4xl font-bold mt-8 mb-6 md:mt-12 md:mb-6 xl:mt-24 xl:mb-12 max-w-[500px]">
           Welcome to the Titan Fitness Center, where people work on
           strenghtening both body and mind.
         </p>
         <button
-          class="text-white/80 font-normal text-xl flex items-center pl-6 pr-2 py-1 bg-black/90 rounded-full"
+          class="text-white/80 font-normal text-base md:text-xl flex items-center pl-5 md:pl-6 pr-2 py-1 bg-black/90 rounded-full"
         >
           More
           <i
             data-lucide="arrow-up-right"
-            class="bg-white/80 text-black/90 rounded-full p-1.5 w-8 h-8 ml-4"
+            class="bg-white/80 text-black/90 rounded-full p-1 w-6 h-6 md:p-1.5 md:w-8 md:h-8 ml-3 md:ml-4"
           ></i>
         </button>
       </div>
-      <div class="dir flex justify-center items-center gap-8 relative">
+      <!-- DIREITA -->
+      <div class="dir flex flex-col gap-6 md:flex-row md:gap-8 justify-center items-center relative w-full">
+        <!-- CARD 1 -->
         <div
-          class="gym1 h-[50dvh] flex justify-between items-end relative rounded-2xl p-8 flex-1"
+          class="gym1 w-full md:w-1/2 xl:h-[50dvh] flex flex-col justify-end items-start relative rounded-2xl p-5 md:p-8 mb-4 md:mb-0"
         >
           <div
             class="overlay absolute top-0 left-0 w-full h-full bg-black/30 rounded-2xl"
           ></div>
           <p
-            class="absolute top-8 left-8 bg-white/90 py-2 px-6 text-black/80 font-semibold rounded-full text-xl"
+            class="absolute top-3 md:top-8 left-3 md:left-8 bg-white/90 py-1.5 md:py-2 px-4 md:px-6 text-black/80 font-semibold rounded-full text-base md:text-xl"
           >
             Power zone
           </p>
-          <p class="text-white/90 font-normal text-2xl relative z-2">
-            Space for working <br />
+          <p class="text-white/90 font-normal text-lg md:text-2xl relative z-2 mt-16 md:mt-12 md:mb-3">
+            Space for working <br class="hidden md:block" />
             with free weights
           </p>
           <i
             data-lucide="arrow-up-right"
-            class="bg-black/30 text-white/90 rounded-full p-2 w-10 h-10 relative z-2"
+            class="bg-black/30 text-white/90 rounded-full p-2 w-8 h-8 md:w-10 md:h-10 relative z-2 mt-3 mb-1"
           ></i>
         </div>
-        <!--  DIVISÃO DE CARDS -->
+        <!-- CARD 2 -->
         <div
-          class="h-[50dvh] flex flex-col gap-8 justify-between items-center relative flex-1"
+          class="w-full md:w-1/2 flex flex-col gap-4 md:gap-8 justify-between items-center relative"
         >
           <div
-            class="gym2 h-[80%] w-full rounded-2xl relative flex justify-between items-end p-8"
+            class="gym2 h-[160px] md:h-[80%] w-full rounded-2xl relative flex justify-between items-end p-5 md:p-8 mb-4 md:mb-0"
           >
             <div
               class="overlay absolute top-0 left-0 w-full h-full bg-black/30 rounded-2xl"
             ></div>
             <p
-              class="absolute top-8 left-8 bg-white/90 py-2 px-6 text-black/80 font-semibold rounded-full text-xl"
+              class="absolute top-3 md:top-8 left-3 md:left-8 bg-white/90 py-1.5 md:py-2 px-4 md:px-6 text-black/80 font-semibold rounded-full text-base md:text-xl"
             >
               Cardio zone
             </p>
-            <p class="text-white/90 font-normal text-2xl relative z-2">
-              Space for working <br />
+            <p class="text-white/90 font-normal text-lg md:text-2xl relative z-2 mt-16 md:mt-12 md:mb-3">
+              Space for working <br class="hidden md:block" />
               with free weights
             </p>
           </div>
-          <div class="flex w-full justify-between items-center">
-            <button>
+          <div class="flex w-full justify-between items-center mt-2 md:mt-0 gap-3 md:gap-0">
+            <button class="focus:outline-none">
               <i
                 data-lucide="arrow-left"
-                class="border-2 border-black/80 rounded-full p-2 w-12 h-12"
+                class="border-2 border-black/80 rounded-full p-1.5 md:p-2 w-8 h-8 md:w-12 md:h-12"
               ></i>
             </button>
-            <button>
+            <button class="focus:outline-none">
               <i
                 data-lucide="arrow-right"
-                class="bg-black/90 text-white/90 rounded-full p-2 w-12 h-12"
+                class="bg-black/90 text-white/90 rounded-full p-1.5 md:p-2 w-8 h-8 md:w-12 md:h-12"
               ></i>
             </button>
           </div>
@@ -292,7 +500,7 @@
       </div>
     </section>
     <section
-      class="bg-[#100d0e] flex justify-center items-center gap-6 w-full rounded-xl p-12 h-[80dvh] relative"
+      class="hidden bg-[#100d0e] xl:flex justify-center items-center gap-6 w-full rounded-xl p-12 h-[80dvh] relative"
     >
       <div
         class="flex flex-col justify-between items-center flex-1 h-full gap-6"
