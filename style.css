@@ -1,12 +1,12 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-.hero{
-    background-image: url(Assets/Img/Hero.png);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.hero {
+  background-image: url(Assets/Img/Hero.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 /* 
 .blurEffect{
@@ -15,36 +15,38 @@
     z-index: 0;
 } */
 
-.cardBlur{
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+.cardBlur {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
-.gym1{
-    background-image: url(Assets/Img/div2.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.gym1 {
+  background-image: url(Assets/Img/div2.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.gym2{
-    background-image: url(Assets/Img/div1.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.gym2 {
+  background-image: url(Assets/Img/div1.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.esq, .div1{
-    flex: 1;
+.esq,
+.div1 {
+  flex: 1;
 }
 
-.dir, .div2{
-    flex: 2;
+.dir,
+.div2 {
+  flex: 2;
 }
 
-.imgT{
-    background-image: url(Assets/Img/ultima.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.imgT {
+  background-image: url(Assets/Img/ultima.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
